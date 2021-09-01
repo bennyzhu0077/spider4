@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    1. 请在登录淘宝（https://www.taobao.com）, 京东（https://www.jd.com）和1688（https://pjjx.1688.com/）
+       之后获取到headers和param填入get_data_1688(), get_Data_taobao(), get_data_jd()中的header字典与param
+    2. 此框架添加了抓取京东评论数据的函数，需要在抓取数据动态页面函数get_jd_comment()的header，param和cookie变量与字典内容
+    3. 京东评价内容必须在登录之后才能查看，否则此数据正常浏览的情况下不显示在页面。数据储存在页面返回的jQuery文件中
+-->
+
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>Searching</title>
+    <style>
+.box {
+            margin: 0 auto;
+            height: auto;
+            width: 1024px;
+        }
+
+        .banner {
+            margin: 0;
+            width: 1024px;
+            height: 150px;
+            text-align: center;
+        {#background-color: pink;#}
+        }
+
+        .banner p {
+            margin: 0;
+            line-height: 150px;
+            font-size: 40px;
+        }
+
+        .header {
+            position: relative;
+            height: 105px;
+            width: 1024px;
+        }
+
+        .searching {
+            margin: 0 auto;
+            display: block;
+            width: 1024px;
+            height: 100px;
+            text-align: center;
+        {#background-color: yellow;#}
+        }
+
+        input {
+            padding: 0;
+            margin: 0;
+        }
+
+        .data {
+            width: 1020px;
+            height: auto;
+            border: 2px solid #cccccc;
+        }
+
+        table {
+            width: 1020px;
+            height: auto;
+            text-align: center;
+        }
+
+        table thead {
+            font-weight: bolder;
+        }
+
+        table tr td {
+            border: 1px solid #cccccc;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .saving {
+            width: 1024px;
+            height: 36px;
+        {#background-color: greenyellow;#}
+        }
+
+        .saving_btn {
+            width: 150px;
+            height: 36px;
+            background-color: #3875d7;
+            border: 0;
+            font-size: 16px;
+            color: #fff;
+            margin-right: 35px;
+        }
+
+        .buttons {
+        {#width: 531px;#} height: 36px;
+            padding-left: 142px;
+        }
+
+        .button_adding {
+            width: 150px;
+            height: 36px;
+            float: left;
+            margin-right: 35px;
+        }
+
+        .button_adding a {
+            display: block;
+            width: 150px;
+            height: 36px;
+            background-color: #3875d7;
+            border: 0;
+            font-size: 16px;
+            color: #fff;
+            line-height: 36px;
+            text-align: center;
+            text-decoration-line: none;
+        }
+
+        .search_box {
+            width: 531px;
+            height: 36px;
+            padding-top: 32px;
+            padding-left: 240px;
+        }
+
+        .text {
+            float: left;
+            width: 445px;
+            height: 32px;
+            border: 2px solid #ccc;
+        }
+
+        .btn {
+            float: left;
+            width: 82px;
+            height: 36px;
+            background-color: #3875d7;
+            border: 0;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .data p {
+            text-align: center;
+        }
+
+        .text_area textarea {
+            width: 1024px;
+        }
+
+        .login_table {
+            margin: 0 auto;
+            width: 600px;
+            border: none;
+
+        }
+
+        .login_table tr {
+            border: none;
+        }
+
+        .login_table td {
+            border: none;
+        }
+
+        .login_buttons {
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login_buttons input{
+            width: 150px;
+            height: 36px;
+            background-color: #3875d7;
+            border: 0;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .login_table tr td input {
+            float: left;
+            width: 300px;
+            height: 32px;
+            border: 2px solid #ccc;
+        }
+        .error_msg{
+            width: 1024px;
+            height: 30px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .back_to_login{
+            height: 20px;
+            text-align: center;
+        }
+        .title{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--The web page base framework-->
+<div class="box">
+    <div class="banner">
+        <p>Data Crawler</p>
+    </div>
+    <div class="header">
+        {% block searching %}{% endblock %}
+    </div>
+</div>
+
+
+</body>
+</html>

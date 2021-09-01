@@ -1,0 +1,25 @@
+{% extends "page_base.html" %}
+{% load static %}
+
+{% block searching %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" name="update_fields" value="提交字段" class="saving_btn" style=""/>
+        <div class="button_adding"><a href={% url 'searching' %} style="">返回上一页</a></div>
+        <div class="text_area">
+            <h2>JD字段</h2>
+            <p>Header_JD</p>
+            <textarea rows="10" name="jd_header">{{ result.jd_header }}</textarea>
+            <p>JD_comment_header</p>
+            <textarea rows="10" name="jd_comment_header">{{ result.jd_comment_header }}</textarea>
+            <p>JD_comment_cookie</p>
+            <textarea rows="10" name="jd_comment_cookie">{{ result.jd_comment_cookie }}</textarea>
+            <h2>TaoBao字段</h2>
+            <p>Header_tb</p>
+            <textarea rows="10" name="tb_header">{{ result.tb_header }}</textarea>
+            <h2>1688字段</h2>
+            <p>Header_1688</p>
+            <textarea rows="10" name="1688_header">{{ result.pjjx_header }}</textarea>
+        </div>
+    </form>
+{% endblock %}

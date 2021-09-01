@@ -1,0 +1,25 @@
+{% extends "page_base.html" %}
+{% load static %}
+
+{% block searching %}
+    <form method="POST">
+        {% csrf_token %}
+        {% if msg %}
+            <div class="error_msg"><span>{{ msg }}</span></div>
+        {% endif %}
+        <table class="login_table">
+            <tr>
+                <td style="text-align: right; width: 200px;"><label for="id_username">用户名：</label></td>
+                <td><input type="text" id="id_username" name="username" placeholder="用户名" autofocus required/></td>
+            </tr>
+            <tr>
+                <td style="text-align: right; width: 200px;"><label for="id_password">密码：</label></td>
+                <td><input type="password" id="id_password" placeholder="密码" name="password" required></td>
+            </tr>
+        </table>
+        <div class="login_buttons">
+            <input type="submit" name="login" value="Login">
+            <div class="button_adding"><a href={% url 'register' %} style="">Sign up</a></div>
+        </div>
+    </form>
+{% endblock %}

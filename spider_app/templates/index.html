@@ -1,0 +1,102 @@
+{% extends "page_base.html" %}
+{% load static %}
+
+{% block searching %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="saving">
+            <div class="back_to_login"><a href="{% url 'login' %}">Log out</a></div>
+            <div class="buttons">
+                <div class="button_adding"><a href={% url 'add_fields' %} style="">添加字段</a></div>
+                <input type="submit" name="jd_csv_out" value="JD导出_CSV" class="saving_btn" style=""/>
+                <input type="submit" name="tb_csv_out" value="TaoBao_导出CSV" class="saving_btn" style=""/>
+                <input type="submit" name="1688_csv_out" value="1688_导出CSV" class="saving_btn" style=""/>
+            </div>
+        </div>
+        <div class="searching">
+            <div class="search_box">
+                <input type="text" name="get_key" class="text"/>
+                <input type="submit" name="send_key" value="搜索" class="btn"/>
+            </div>
+        </div>
+        <div class="data">
+            {% csrf_token %}
+            <p>{{ received_key }}</p>
+            {% if datalist_jd %}
+                <table>
+                <thead>
+                <tr>
+                    <td colspan="4">Keyword: {{ received_key }} sales top 10 in JD</td>
+                </tr>
+                <tr style="height: 46px">
+                    <td style="width: 600px">Item</td>
+                    <td>Price</td>
+                    <td>Good Rate(%)</td>
+                    <td style="width: 200px">Supplier</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in datalist_jd %}
+                    <tr style="height: 46px">
+                        <td style="text-align: left"><a href="{{ data.link }}" target="view_window">{{ data.item }}</a>
+                        </td>
+                        <td>{{ data.price }}</td>
+                        <td>{{ data.rate }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+            {% if datalist_1688 %}
+                <thead>
+                <tr>
+                    <td colspan="4">Keyword: {{ received_key }} sales top 10 in 1688</td>
+                </tr>
+                <tr style="height: 46px">
+                    <td style="width: 600px">Item</td>
+                    <td>Price</td>
+                    <td>Sales</td>
+                    <td style="width: 200px">Supplier</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in datalist_1688 %}
+                    <tr style="height: 46px">
+                        <td style="text-align: left"><a href="{{ data.link }}" target="view_window">{{ data.item }}</a>
+                        </td>
+                        <td>{{ data.price }}</td>
+                        <td>{{ data.sale }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+            {% if datalist_tb %}
+                <thead>
+                <tr>
+                    <td colspan="4">Keyword: {{ received_key }} sales top 10 in TaoBao</td>
+                </tr>
+                <tr style="height: 46px">
+                    <td style="width: 600px">Item</td>
+                    <td>Price</td>
+                    <td>Sales</td>
+                    <td style="width: 200px">Supplier</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in datalist_tb %}
+                    <tr style="height: 46px">
+                        <td style="text-align: left"><a href="{{ data.link }}" target="view_window">{{ data.item }}</a>
+                        </td>
+                        <td>{{ data.price }}</td>
+                        <td>{{ data.sale }}</td>
+                        <td>{{ data.supplier }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+            </table>
+        </div>
+    </form>
+{% endblock %}
+
